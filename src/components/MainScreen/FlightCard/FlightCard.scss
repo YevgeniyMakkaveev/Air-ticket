@@ -1,0 +1,25 @@
+.card{
+ width: 100%;
+ padding: 0 2em;
+ display: flex;
+ flex-direction: column;
+ max-width: 800px;
+.head{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+.flight-detail{
+ display: flex;
+ flex-direction: column;
+ .blue{
+  color: blue;
+ }
+ .time-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ }
+}
+
+}

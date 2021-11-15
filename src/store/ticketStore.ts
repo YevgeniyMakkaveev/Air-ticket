@@ -1,16 +1,17 @@
-import { makeAutoObservable,toJS } from "mobx";
+import { makeAutoObservable, toJS } from "mobx";
 
 import mapFlights from "../units/mapFlights";
 import filterTickets from "../units/filterTickets";
-import IFlights from "../types/Flights";
+import IFlight from "../types/Flights";
 
 class TicketStore {
-  allFlight: IFlights[] = mapFlights();
-  filteredFlight: IFlights[] | [] = this.allFlight;
+  allFlight: IFlight[] = mapFlights();
+  filteredFlight: IFlight[] | [] = this.allFlight;
   sortOder: string | null = null;
-  filterByTransfer: string | null = null;
+  filterByHasTransfer: number | null = null;
   filterByCompany: string | null = null;
-  filterByPriceRange: [number, number] | null = null;
+  filterByMinPrice: string = "";
+  filterByMaxPrice: string = "";
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -18,36 +19,45 @@ class TicketStore {
 
   setSortOder(newOder: string) {
     this.sortOder = newOder;
+    this.sortFlight();
   }
 
-  setFilterByTransfer(newFilter: string) {
-    this.filterByTransfer = newFilter;
+  setFilterByHasTransfer(newFilter: number) {
+    this.filterByHasTransfer = newFilter;
+    this.sortFlight();
   }
 
   setFilterByCompany(newFilter: string) {
     this.filterByCompany = newFilter;
+    this.sortFlight();
   }
 
-  setPriceRange(newPriceRange: [number, number]) {
-    if(!newPriceRange[0])newPriceRange[0]=0
-    this.filterByPriceRange = newPriceRange;
+  setFilterByMinPrice(newMinPrice: string) {
+    this.filterByMinPrice = newMinPrice;
+    this.sortFlight();
   }
 
-  setFilteredFlight(newFlight:IFlights[]){
-   this.filteredFlight=newFlight
+  setFilterByMaxPrice(newMinPrice: string) {
+    this.filterByMaxPrice = newMinPrice;
+    this.sortFlight();
   }
 
-  sortFlight(){
-   this.filteredFlight=filterTickets()
+  setFilteredFlight(newFlight: IFlight[]) {
+    this.filteredFlight = newFlight;
+    this.sortFlight();
   }
-  testThat(){
-this.setSortOder(`time`)
-// this.setPriceRange([10000,40000])
-this.setFilterByCompany('AY')
-this.sortFlight()
-console.log(toJS(this.filteredFlight))
 
+  sortFlight() {
+    this.filteredFlight = filterTickets();
   }
+  // testThat() {
+  //   this.setSortOder(`time`);
+  //  this.setFilterByMinPrice('85000')
+  //   this.setFilterByHasTransfer(true)
+  //   this.setFilterByCompany("AY");
+  //   this.sortFlight();
+  //   console.log(toJS(this.filteredFlight));
+  // }
 }
 
 export default new TicketStore();

@@ -1,17 +1,24 @@
-interface IFlights{
-carrier: string;
-carrierUid: string;
-price: number;
-currency: string;
-duration: number;
-startCity: string;
-startAirport: string;
-startPointUid: string;
-endCity: string;
-endAirport: string;
-endPointUid: string;
-startDate: string;
-endDate: string;
-hasTranser: boolean;
+interface IFlight {
+  carrier: string;
+  carrierUid: string;
+  price: number;
+  currency: string;
+  flightTo: IFlightDetail;
+  flightBack: IFlightDetail;
 }
-export default IFlights
+export default IFlight;
+
+export interface IFlightDetail {
+  startCity: string;
+  startDate: string;
+  endDate: string;
+  startAirport: string;
+  startPointUid: string;
+  endCity: string;
+  endAirport: string;
+  endPointUid: string;
+  duration: number;
+  hasTranser: boolean;
+  transferNumber: number;
+  airline: string;
+}

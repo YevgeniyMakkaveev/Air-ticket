@@ -1,25 +1,30 @@
 import ticketStore from "../store/ticketStore";
-import IFlights from "../types/Flights";
+import IFlight from "../types/Flights";
 
 const filterTickets = () => {
   const {
     filterByCompany,
-    filterByTransfer,
-    filterByPriceRange,
+    filterByHasTransfer,
     sortOder,
     allFlight,
+    filterByMaxPrice,
+    filterByMinPrice,
   } = ticketStore;
-  let res = [...allFlight] ;
-  if (filterByCompany) res = res.filter((el) => el.carrierUid === filterByCompany);
-  if (filterByPriceRange)
-    res = res.filter((el) => el.price > filterByPriceRange[0] && el.price < filterByPriceRange[1]
-    );
+  let res = [...allFlight];
+  if (filterByCompany)
+    res = res.filter((el) => el.carrierUid === filterByCompany);
+  if (filterByMaxPrice) res = res.filter((el) => el.price < +filterByMaxPrice);
+  if (filterByMinPrice) res = res.filter((el) => el.price > +filterByMinPrice);
   if (sortOder) res = sortArr(res, sortOder);
+  if (filterByHasTransfer !== null)
+    res = res.filter(
+      (el) => el.flightTo.transferNumber === filterByHasTransfer
+    );
   return res;
 };
 export default filterTickets;
 
-const sortArr = (arr: IFlights[] | [], oder: string) => {
+const sortArr = (arr: IFlight[] | [], oder: string) => {
   if (!arr) return arr;
   switch (oder) {
     case "priceUp":
@@ -27,7 +32,7 @@ const sortArr = (arr: IFlights[] | [], oder: string) => {
     case "priceDown":
       return arr.sort((a, b) => b.price - a.price);
     case "time":
-      return arr.sort((a, b) => a.duration - b.duration);
+      return arr.sort((a, b) => a.flightTo.duration - b.flightTo.duration);
     default:
       return arr;
   }

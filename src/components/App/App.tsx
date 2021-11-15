@@ -1,8 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import getCompanies from '../../units/getCompanies';
-import './App.css';
+import { toJS } from 'mobx';
+import './App.scss';
 import ticketStore from '../../store/ticketStore';
+import SideBar from '../SideBar';
+import MainScreen from '../MainScreen';
 
 
 
@@ -10,13 +12,16 @@ import ticketStore from '../../store/ticketStore';
 
 const App: React.FC = observer(() => {
 
-  ticketStore.testThat()
+  // console.log( Array.from(new Set(ticketStore.allFlight.map((el) => el.transferNumber))))
 
-  console.log(getCompanies(ticketStore.allFlight))
+  // ticketStore.testThat()
+
+  console.log(toJS(ticketStore.allFlight))
 
   return (
     <div className="App">
-
+        <SideBar/>
+        <MainScreen/>
     </div>
   );
 })

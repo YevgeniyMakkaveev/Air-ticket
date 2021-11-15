@@ -1,5 +1,5 @@
-interface ICompany{
- name: string;
- uid: string
+interface ICompany {
+  name: string;
+  uid: string;
 }
-export default ICompany
+export default ICompany;
