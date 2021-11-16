@@ -27,6 +27,7 @@ const FilterByPrice: React.FC = observer(() => {
         <input
           type="textbox"
           name="priceMin"
+          style={{marginBottom: '1rem'}}
           value={filterByMinPrice}
           onChange={(e) => handleMinInput(e.target.value)}
         />

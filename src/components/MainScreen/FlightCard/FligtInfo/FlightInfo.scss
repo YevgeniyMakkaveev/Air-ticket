@@ -1,0 +1,72 @@
+.flight-detail {
+  display: flex;
+  flex-direction: column;
+
+  .airport-details {
+    font-size: 1.5rem;
+    padding: 1rem 3rem;
+
+  }
+
+  .blue {
+    color: #41b6e8;
+  }
+
+  .small {
+    font-size: 1rem;
+    font-weight: 100;
+  }
+
+  .time-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 3rem;
+
+    .time-label {
+      font-size: 1.4rem;
+      font-weight: 500;
+      padding-right: 1rem;
+    }
+
+    .day-label {
+      font-size: 1.3rem;
+      font-weight: 400;
+
+      .day-label-end {
+        padding-left: 0.4rem;
+      }
+    }
+  }
+
+  .transfer-wrap {
+    height: fit-content;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+    align-items: center;
+    margin-top: 2rem;
+
+    .line {
+      width: 100%;
+      border-bottom: gray solid 4px;
+      transform: translateY(3px);
+
+    }
+
+    .line-text {
+      flex-grow: 2;
+      padding: 0 0.5em;
+      display: flex;
+      width: fit-content;
+      margin: 0 auto;
+      color: orange;
+      font-size: 1.3rem;
+    }
+  }
+
+  .flight-company {
+    padding: 0 3rem;
+    font-size: 1.2rem;
+  }
+}

@@ -33,7 +33,7 @@ const SortList: React.FC = observer(() => {
   const sortCondition: ISortConditions[] = [
     { value: "priceUp", name: "По возрастанию цены" },
     { value: "priceDown", name: "По убыванию цены" },
-    { value: "ptime", name: "По времени" },
+    { value: "time", name: "По времени" },
   ];
 
   return (

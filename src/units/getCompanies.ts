@@ -11,3 +11,4 @@ const getCompanies = (flights: IFlight[]) => {
   return res;
 };
 export default getCompanies;
+

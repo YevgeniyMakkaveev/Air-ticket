@@ -1,25 +1,60 @@
-.card{
+.card {
  width: 100%;
- padding: 0 2em;
+ padding: 0 3em;
  display: flex;
  flex-direction: column;
- max-width: 800px;
-.head{
- display: flex;
- flex-direction: row;
- justify-content: space-between;
-}
-.flight-detail{
- display: flex;
- flex-direction: column;
- .blue{
-  color: blue;
- }
- .time-details {
+
+ .head {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
- }
-}
+  align-items: center;
+  background-color: #0087c9;
+  height: 60px;
 
+  .logo>img {
+   display: block;
+   margin-left: 0.5rem;
+   height: 50px;
+   width: 100%;
+  }
+
+  .price {
+   text-align: end;
+   font-size: 1.5rem;
+   color: white;
+   font-weight: 700;
+  }
+
+  .price-label {
+   color: white;
+   text-align: end;
+   font-weight: 300;
+  }
+ }
+
+ .line-wrap {
+  width: 100%;
+  height: 10px;
+  margin: 2rem 0 1rem;
+
+  .blue-line {
+   border-bottom: 5px #3ea1d1 solid;
+   transform: translateY(-3px);
+  }
+ }
+
+ .big-orange-button {
+  width: 100%;
+  margin: 1.5rem 0rem 2rem;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: orange;
+  font-weight: 500;
+  font-size: 1.4rem;
+  cursor: pointer;
+ }
 }

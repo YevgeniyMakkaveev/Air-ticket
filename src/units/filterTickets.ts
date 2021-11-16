@@ -1,7 +1,7 @@
 import ticketStore from "../store/ticketStore";
 import IFlight from "../types/Flights";
 
-const filterTickets = () => {
+const filterTickets = (filterCompany:boolean) => {
   const {
     filterByCompany,
     filterByHasTransfer,
@@ -11,7 +11,7 @@ const filterTickets = () => {
     filterByMinPrice,
   } = ticketStore;
   let res = [...allFlight];
-  if (filterByCompany)
+  if (filterByCompany&&filterCompany)
     res = res.filter((el) => el.carrierUid === filterByCompany);
   if (filterByMaxPrice) res = res.filter((el) => el.price < +filterByMaxPrice);
   if (filterByMinPrice) res = res.filter((el) => el.price > +filterByMinPrice);

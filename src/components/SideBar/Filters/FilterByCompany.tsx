@@ -4,12 +4,13 @@ import getMinPrice from "../../../units/getMinPrice";
 import getCompanies from "../../../units/getCompanies";
 import ticketStore from "../../../store/ticketStore";
 import ICompany from "../../../types/Company";
+import './FilterStyle.scss'
 
 
 interface ICompanyCheckbox {
   company: ICompany;
   storeValue: string | null;
-  minPrice: number;
+  minPrice: string;
   onChange: (newFilter: string) => void;
 }
 
@@ -19,18 +20,19 @@ const CompanyCheckbox: React.FC<ICompanyCheckbox> = (props) => {
   return (
     <div>
       <input
-        type="radio"
+        type="checkbox"
         name={uid}
+        disabled={minPrice==='Билетов нет'}
         checked={uid === storeValue}
         onChange={() => onChange(uid)}
       />
-      <label htmlFor={uid}>{name} от {minPrice}</label>
+      <label className={minPrice==='Билетов нет'?'disabled':''} htmlFor={uid}>- {name} {minPrice}</label>
     </div>
   );
 };
 
 const FilterByCompany: React.FC = observer(() => {
-  const { allFlight, setFilterByCompany, filterByCompany,filteredFlight } = ticketStore;
+  const { allFlight, setFilterByCompany, filterByCompany,filteredBeforeCompany } = ticketStore;
   const allCompanies = getCompanies(allFlight);
 
   return (
@@ -40,7 +42,7 @@ const FilterByCompany: React.FC = observer(() => {
           key={el.uid}
           company={el}
           storeValue={filterByCompany}
-          minPrice={getMinPrice(filteredFlight,el.uid)}
+          minPrice={getMinPrice(filteredBeforeCompany,el.uid)}
           onChange={setFilterByCompany}
         />
       ))}

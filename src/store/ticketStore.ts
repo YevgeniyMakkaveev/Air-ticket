@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable} from "mobx";
 
 import mapFlights from "../units/mapFlights";
 import filterTickets from "../units/filterTickets";
@@ -6,6 +6,7 @@ import IFlight from "../types/Flights";
 
 class TicketStore {
   allFlight: IFlight[] = mapFlights();
+  filteredBeforeCompany: IFlight[]|[]=this.allFlight;
   filteredFlight: IFlight[] | [] = this.allFlight;
   sortOder: string | null = null;
   filterByHasTransfer: number | null = null;
@@ -19,45 +20,57 @@ class TicketStore {
 
   setSortOder(newOder: string) {
     this.sortOder = newOder;
-    this.sortFlight();
+    this.filterFlight();
   }
 
   setFilterByHasTransfer(newFilter: number) {
     this.filterByHasTransfer = newFilter;
-    this.sortFlight();
+    this.filterBeforeCompany();
+    this.filterFlight();
   }
 
   setFilterByCompany(newFilter: string) {
     this.filterByCompany = newFilter;
-    this.sortFlight();
+    this.filterFlight();
   }
 
   setFilterByMinPrice(newMinPrice: string) {
     this.filterByMinPrice = newMinPrice;
-    this.sortFlight();
+    this.filterBeforeCompany();
+    this.filterFlight();
   }
 
   setFilterByMaxPrice(newMinPrice: string) {
     this.filterByMaxPrice = newMinPrice;
-    this.sortFlight();
+    this.filterBeforeCompany();
+    this.filterFlight();
   }
 
   setFilteredFlight(newFlight: IFlight[]) {
     this.filteredFlight = newFlight;
-    this.sortFlight();
+    this.filterFlight();
   }
 
-  sortFlight() {
-    this.filteredFlight = filterTickets();
+  resetSearch(){
+    this.sortOder=null;
+    this.filterByMaxPrice='';
+    this.filterByMinPrice='';
+    this.filterByHasTransfer=null;
+    this.filterByCompany=null;
+    this.filterByHasTransfer=null;
+    this.filteredBeforeCompany=this.allFlight
+    this.filteredFlight=this.allFlight
   }
-  // testThat() {
-  //   this.setSortOder(`time`);
-  //  this.setFilterByMinPrice('85000')
-  //   this.setFilterByHasTransfer(true)
-  //   this.setFilterByCompany("AY");
-  //   this.sortFlight();
-  //   console.log(toJS(this.filteredFlight));
-  // }
+
+  
+filterBeforeCompany(){
+this.filteredBeforeCompany=filterTickets(false)
+}
+
+  filterFlight() {
+    this.filteredFlight = filterTickets(true);
+  }
+
 }
 
 export default new TicketStore();

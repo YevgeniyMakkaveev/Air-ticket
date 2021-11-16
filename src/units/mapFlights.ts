@@ -40,8 +40,8 @@ const makeFlightDetail = (leg: any): IFlightDetail => {
     endPointUid: lastSegment.arrivalAirport.uid,
     endCity: lastSegment.arrivalCity?.caption ?? "",
     transferNumber: segments.length - 1,
-    airline: segments.airline?.caption ?? "",
+    airline: firstSegment.airline?.caption ?? "",
     hasTranser: segments.length > 1 ? true : false,
-    duration: Date.parse(endDate) - Date.parse(startDate),
+    duration: +Date.parse(endDate) - +Date.parse(startDate),
   };
 };
