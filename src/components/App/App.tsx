@@ -4,10 +4,6 @@ import './App.scss';
 import SideBar from '../SideBar';
 import MainScreen from '../MainScreen';
 
-
-
-
-
 const App: React.FC = observer(() => (
     <div className="App">
         <SideBar/>
