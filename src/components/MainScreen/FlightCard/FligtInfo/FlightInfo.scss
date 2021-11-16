@@ -5,7 +5,6 @@
   .airport-details {
     font-size: 1.5rem;
     padding: 1rem 3rem;
-
   }
   .small-line {
     width: 100%;
@@ -53,14 +52,6 @@
     grid-template-columns: 1fr 200px 1fr;
     align-items: center;
     margin-top: 2rem;
-
-    .line {
-      width: 100%;
-      border-bottom: gray solid 2px;
-      transform: translateY(3px);
-
-    }
-
     .line-text {
       flex-grow: 2;
       padding: 0 0.5em;
@@ -71,7 +62,18 @@
       font-size: 1.3rem;
     }
   }
-
+  .line {
+    width: 100%;
+    border-bottom: gray solid 2px;
+    transform: translateY(3px);
+  }
+  .line-wrap{
+    height: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0 1rem;
+  }
   .flight-company {
     padding: 0 3rem;
     font-size: 1.2rem;

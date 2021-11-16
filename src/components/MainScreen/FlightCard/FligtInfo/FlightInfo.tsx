@@ -27,11 +27,14 @@ const FlightInfo: React.FC<IFlightDetail> = (props) => {
           {endAirport} <span className="blue">{`(${endPointUid})`}</span>
         </span>
       </div>
-      <div className='small-line' />
+      <div className="small-line" />
       <div className="time-details">
         <div className="time-group">
           <span className="time-label">
-            {new Date(startDate).toLocaleString("ru",{hour: "numeric",minute: "numeric"})}
+            {new Date(startDate).toLocaleString("ru", {
+              hour: "numeric",
+              minute: "numeric",
+            })}
           </span>
           <span className="blue day-label">
             {new Date(startDate).toLocaleString("ru", {
@@ -48,14 +51,22 @@ const FlightInfo: React.FC<IFlightDetail> = (props) => {
         <div>
           <span className="time-label">
             <i className="fa fa-clock-o" />
-            {` ${new Date(duration).toLocaleString("ru", { hour: "2-digit" })}`}  ч. 
-            {` ${new Date(duration).toLocaleString("ru", { minute: "2-digit" })} `}
+            {` ${new Date(duration).toLocaleString("ru", {
+              hour: "2-digit",
+            })}`}{" "}
+            ч.
+            {` ${new Date(duration).toLocaleString("ru", {
+              minute: "2-digit",
+            })} `}
             мин.
           </span>
         </div>
         <div className="time-group">
           <span className="time-label">
-            {new Date(endDate).toLocaleString("ru",{hour: "numeric",minute: "numeric"})}
+            {new Date(endDate).toLocaleString("ru", {
+              hour: "numeric",
+              minute: "numeric",
+            })}
           </span>
           <span className="blue day-label">
             {new Date(endDate).toLocaleString("ru", {
@@ -82,22 +93,21 @@ interface ITransLine {
   transfer: number;
 }
 
-const TransferLine: React.FC<ITransLine> = (props) => {
-  const { transfer } = props;
-  const justLine = <div className="line" />;
-  const lineAndText = (
-    <>
-      <div className="line" />
-      <div className="line-text">
-        {transfer} {transfer === 1 ? "пересадка" : "пересадки"}
+const TransferLine: React.FC<ITransLine> = ({ transfer }) => (
+  <>
+    {transfer === 0 && (
+      <div className="line-wrap">
+        <div className="line" />
       </div>
-      <div className="line" />
-    </>
-  );
-
-  return (
-    <div className="transfer-wrap">
-      {transfer === 0 ? justLine : lineAndText}
-    </div>
-  );
-};
+    )}
+    {transfer !== 0 && (
+      <div className="transfer-wrap">
+        <div className="line" />
+        <div className="line-text">
+          {transfer} {transfer === 1 ? "пересадка" : "пересадки"}
+        </div>
+        <div className="line" />
+      </div>
+    )}
+  </>
+);

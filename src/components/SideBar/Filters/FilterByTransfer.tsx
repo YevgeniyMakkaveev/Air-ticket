@@ -16,7 +16,7 @@ interface ITransferCheckbox {
 
 const TransferCheckbox: React.FC<ITransferCheckbox> = (props) => {
   const { setFilter, storeValue, transferData } = props;
-  const {id,name,value}=transferData
+  const { id, name, value } = transferData;
   return (
     <div>
       <input

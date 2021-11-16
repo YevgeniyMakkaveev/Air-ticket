@@ -1,4 +1,5 @@
 import { observer } from "mobx-react";
+import {toJS} from 'mobx'
 import React, { useState } from "react";
 import ticketStore from "../../store/ticketStore";
 import FlightCard from "./FlightCard";
@@ -8,6 +9,7 @@ const MainScreen: React.FC = observer(() => {
   const [limit, setLimit] = useState(4);
   const { filteredFlight } = ticketStore;
   const data = filteredFlight.slice(0, limit);
+  console.log(toJS(filteredFlight))
 
   return (
     <div>
