@@ -19,10 +19,8 @@ const MainScreen: React.FC = observer(() => {
             {...el}
           />
         ))}
-      {!filteredFlight[0] && "Нет данных"}
-      <div className='btn-wrap'>
-       <button className='more-btn' onClick={() => setLimit(limit + 4)}>Показать еще</button> 
-      </div>
+      {!filteredFlight[0]&& <div className='no-data'> Нет данных </div>}     
+      {filteredFlight[0]&& <button className='more-btn' onClick={() => setLimit(limit + 4)}>Показать еще</button> }
       </div>
     </div>
   );

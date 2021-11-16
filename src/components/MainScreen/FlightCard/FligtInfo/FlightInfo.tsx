@@ -27,10 +27,11 @@ const FlightInfo: React.FC<IFlightDetail> = (props) => {
           {endAirport} <span className="blue">{`(${endPointUid})`}</span>
         </span>
       </div>
+      <div className='small-line' />
       <div className="time-details">
         <div className="time-group">
           <span className="time-label">
-            {new Date(startDate).toLocaleDateString("ru")}
+            {new Date(startDate).toLocaleString("ru",{hour: "numeric",minute: "numeric"})}
           </span>
           <span className="blue day-label">
             {new Date(startDate).toLocaleString("ru", {
@@ -46,16 +47,15 @@ const FlightInfo: React.FC<IFlightDetail> = (props) => {
         </div>
         <div>
           <span className="time-label">
-            {" "}
-            <i className="fa fa-clock-o" />{" "}
-            {new Date(duration).toLocaleString("ru", { hour: "numeric" })} ч.{" "}
-            {new Date(duration).toLocaleString("ru", { minute: "2-digit" })}{" "}
-            мин.{" "}
+            <i className="fa fa-clock-o" />
+            {` ${new Date(duration).toLocaleString("ru", { hour: "2-digit" })}`}  ч. 
+            {` ${new Date(duration).toLocaleString("ru", { minute: "2-digit" })} `}
+            мин.
           </span>
         </div>
         <div className="time-group">
           <span className="time-label">
-            {new Date(endDate).toLocaleDateString("ru")}
+            {new Date(endDate).toLocaleString("ru",{hour: "numeric",minute: "numeric"})}
           </span>
           <span className="blue day-label">
             {new Date(endDate).toLocaleString("ru", {

@@ -12,8 +12,7 @@ const FlightCard: React.FC<IFlight> = (props) => {
     <div className="card">
       <div className="head">
         <div className="logo">
-          {" "}
-          <img src={getLogo(carrierUid)} alt={carrier} />{" "}
+          <img src={getLogo(carrierUid)} alt={carrier} />
         </div>
         <div className="price-group">
           <div className='price'> {price} ₽</div>
@@ -29,7 +28,7 @@ const FlightCard: React.FC<IFlight> = (props) => {
         key={`${flightBack.endPointUid}+${price}+${Math.random().toFixed(10)}`}
         {...flightBack}
       />
-      <div className='big-orange-button'> Выбрать</div>
+      <div className='big-orange-button'> ВЫБРАТЬ</div>
     </div>
   );
 };

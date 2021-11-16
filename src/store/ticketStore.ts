@@ -1,4 +1,4 @@
-import { makeAutoObservable} from "mobx";
+import { makeAutoObservable } from "mobx";
 
 import mapFlights from "../units/mapFlights";
 import filterTickets from "../units/filterTickets";
@@ -6,7 +6,7 @@ import IFlight from "../types/Flights";
 
 class TicketStore {
   allFlight: IFlight[] = mapFlights();
-  filteredBeforeCompany: IFlight[]|[]=this.allFlight;
+  filteredBeforeCompany: IFlight[] | [] = this.allFlight;
   filteredFlight: IFlight[] | [] = this.allFlight;
   sortOder: string | null = null;
   filterByHasTransfer: number | null = null;
@@ -40,10 +40,13 @@ class TicketStore {
     this.filterFlight();
   }
 
-  setFilterByMaxPrice(newMinPrice: string) {
-    this.filterByMaxPrice = newMinPrice;
-    this.filterBeforeCompany();
-    this.filterFlight();
+  setFilterByMaxPrice(newMaxPrice: string) {
+    const minPrice = Math.min(...this.allFlight.map((el) => el.price));
+    this.filterByMaxPrice = newMaxPrice;
+    if (+newMaxPrice > minPrice || !newMaxPrice) {
+      this.filterBeforeCompany();
+      this.filterFlight();
+    }
   }
 
   setFilteredFlight(newFlight: IFlight[]) {
@@ -51,26 +54,24 @@ class TicketStore {
     this.filterFlight();
   }
 
-  resetSearch(){
-    this.sortOder=null;
-    this.filterByMaxPrice='';
-    this.filterByMinPrice='';
-    this.filterByHasTransfer=null;
-    this.filterByCompany=null;
-    this.filterByHasTransfer=null;
-    this.filteredBeforeCompany=this.allFlight
-    this.filteredFlight=this.allFlight
+  resetSearch() {
+    this.sortOder = null;
+    this.filterByMaxPrice = "";
+    this.filterByMinPrice = "";
+    this.filterByHasTransfer = null;
+    this.filterByCompany = null;
+    this.filterByHasTransfer = null;
+    this.filteredBeforeCompany = this.allFlight;
+    this.filteredFlight = this.allFlight;
   }
 
-  
-filterBeforeCompany(){
-this.filteredBeforeCompany=filterTickets(false)
-}
+  filterBeforeCompany() {
+    this.filteredBeforeCompany = filterTickets(false);
+  }
 
   filterFlight() {
     this.filteredFlight = filterTickets(true);
   }
-
 }
 
 export default new TicketStore();
