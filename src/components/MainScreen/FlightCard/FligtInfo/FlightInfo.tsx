@@ -53,7 +53,7 @@ const FlightInfo: React.FC<IFlightDetail> = (props) => {
             <i className="fa fa-clock-o" />
             {` ${new Date(duration).toLocaleString("ru", {
               hour: "2-digit",
-            })}`}{" "}
+            })}`}
             ч.
             {` ${new Date(duration).toLocaleString("ru", {
               minute: "2-digit",
@@ -62,22 +62,22 @@ const FlightInfo: React.FC<IFlightDetail> = (props) => {
           </span>
         </div>
         <div className="time-group">
+          <span className="blue day-label">
+            <span className="day-label-end">
+              {`${new Date(endDate).toLocaleString("ru", {
+                day: "numeric",
+                month: "short",
+              })} `}
+              {`${new Date(endDate).toLocaleString("ru", {
+                weekday: "short",
+              })} `}
+            </span>
+          </span>
           <span className="time-label">
             {new Date(endDate).toLocaleString("ru", {
               hour: "numeric",
               minute: "numeric",
             })}
-          </span>
-          <span className="blue day-label">
-            {new Date(endDate).toLocaleString("ru", {
-              weekday: "short",
-            })}
-            <span className="day-label-end">
-              {new Date(endDate).toLocaleString("ru", {
-                day: "numeric",
-                month: "short",
-              })}
-            </span>
           </span>
         </div>
       </div>
